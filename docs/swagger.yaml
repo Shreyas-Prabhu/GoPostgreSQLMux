@@ -1,0 +1,275 @@
+basePath: /
+definitions:
+  model.Asset:
+    properties:
+      assetid:
+        type: string
+      assetname:
+        example: Laptop
+        type: string
+      assettype:
+        example: Electronic
+        type: string
+    type: object
+  model.Employee:
+    properties:
+      address:
+        example: mumbai
+        type: string
+      bloodgroup:
+        example: AB-ve
+        type: string
+      emergencycontact:
+        example: 84984894
+        type: integer
+      empid:
+        type: string
+      employeeemail:
+        example: ppp@gmail.com
+        type: string
+      firstname:
+        example: Shreyas
+        type: string
+      gender:
+        example: male
+        type: string
+      lastname:
+        example: Prabhu
+        type: string
+      phonenumber:
+        example: 8787878787
+        type: integer
+    type: object
+  model.EmployeeAsset:
+    properties:
+      assetid:
+        example: <Replace with the asset id>
+        type: string
+      empid:
+        example: <Replace with the emp id>
+        type: string
+      id:
+        type: string
+    type: object
+host: localhost:4000
+info:
+  contact: {}
+  description: This is a Employee Asset management intended to use internally only.
+    Not a public facing api.
+  termsOfService: http://swagger.io/terms/
+  title: EmployeeAssetManagement
+  version: "1.0"
+paths:
+  /asset/{id}:
+    get:
+      description: gets an asset by providing path variable as asset id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Asset'
+      summary: get Asset
+      tags:
+      - Asset
+  /asset/assets:
+    get:
+      description: gets all assets
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Asset'
+            type: array
+      summary: gets all assets
+      tags:
+      - Asset
+  /asset/createasset:
+    post:
+      consumes:
+      - application/json
+      description: Create a new Asset with the input paylod
+      parameters:
+      - description: Create Asset
+        in: body
+        name: Asset
+        required: true
+        schema:
+          $ref: '#/definitions/model.Asset'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Create a new Asset
+      tags:
+      - Asset
+  /asset/editasset/{id}:
+    put:
+      consumes:
+      - application/json
+      description: updates an asset with the input paylod
+      parameters:
+      - description: Update asset
+        in: body
+        name: asset
+        required: true
+        schema:
+          $ref: '#/definitions/model.Asset'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Updates Asset
+      tags:
+      - Asset
+  /dashboard:
+    get:
+      description: gets all data of employee along with number of asset
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+      summary: gets all data
+      tags:
+      - Dashboard
+  /deleteasset/{id}:
+    delete:
+      description: delete an asset
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Deletes Asset
+      tags:
+      - Asset
+  /employee/{id}:
+    get:
+      description: gets an employee by providing path variable as emp id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Employee'
+      summary: get Employee
+      tags:
+      - Employee
+  /employee/createemployee:
+    post:
+      consumes:
+      - application/json
+      description: Create a new employee with the input paylod
+      parameters:
+      - description: Create Employee
+        in: body
+        name: employee
+        required: true
+        schema:
+          $ref: '#/definitions/model.Employee'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Create a new employee
+      tags:
+      - Employee
+  /employee/deleteemployee/{id}:
+    delete:
+      description: delete an employee
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Deletes Employee
+      tags:
+      - Employee
+  /employee/editemployee/{id}:
+    put:
+      consumes:
+      - application/json
+      description: updates an employee with the input paylod
+      parameters:
+      - description: Update Employee
+        in: body
+        name: employee
+        required: true
+        schema:
+          $ref: '#/definitions/model.Employee'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Updates Employee
+      tags:
+      - Employee
+  /employee/employees:
+    get:
+      description: gets all Employees
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Employee'
+            type: array
+      summary: gets all Employees
+      tags:
+      - Employee
+  /mapping/assignassetmapping:
+    post:
+      consumes:
+      - application/json
+      description: Create a new Asset Mapping with the input paylod
+      parameters:
+      - description: Create Employee Asset Mapping
+        in: body
+        name: EmployeeAsset
+        required: true
+        schema:
+          $ref: '#/definitions/model.EmployeeAsset'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Create a new Asset Mapping
+      tags:
+      - Mapping
+  /mapping/getallassets/{empid}:
+    get:
+      description: gets all asset Mapping by providing path variable as emp id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: get Asset Mapping for an employee id
+      tags:
+      - Mapping
+  /mapping/removeassetmapping/{id}:
+    delete:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Remove asset mapping
+      tags:
+      - Mapping
+swagger: "2.0"
