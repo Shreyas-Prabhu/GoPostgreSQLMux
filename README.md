@@ -2,6 +2,7 @@
 CRUD operation using Gorilla mux, Postgresql, GORM
 
 All the apis are integrated with swagger using swaggo
+swagger can be accessed using - http://localhost:4000/swagger/index.html
 
 The table is created automatically in postgresql using Automigrate schema feature in GORM. There is no explicit table creation done. 
 
